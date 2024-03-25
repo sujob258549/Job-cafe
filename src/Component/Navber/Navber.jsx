@@ -9,6 +9,7 @@ const Navber = () => {
         <NavLink className={'text-xl font-medium px-5 py-2 mr-2 hover:bg-slate-300 rounded-xl'} to={'/'}>Home</NavLink>
         <NavLink className={'text-xl font-medium px-5 py-2 mr-2 hover:bg-slate-300 rounded-xl'} to={'/about'}>About</NavLink>
         <NavLink className={'text-xl font-medium px-5 py-2 mr-2 hover:bg-slate-300 rounded-xl'} to={'/detail'}>Detail</NavLink>
+        <NavLink className={'text-xl font-medium px-5 py-2 mr-2 hover:bg-slate-300 rounded-xl'} to={'/apply'}>Apply Job</NavLink>
         <NavLink className={'text-xl font-medium px-5 py-2 mr-2 hover:bg-slate-300 rounded-xl'} to={'/contact'}>Contact</NavLink>
     
     </>

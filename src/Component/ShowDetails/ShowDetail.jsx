@@ -1,16 +1,27 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { NavLink, useLoaderData, useParams } from "react-router-dom";
 import { IoLocationOutline } from "react-icons/io5";
 import { FaCommentDollar, FaPhone } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { GrUserExpert } from "react-icons/gr";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { setLocalstorase } from "../LocalStorase/LocalStorase";
 
 
 const ShowDetail = () => {
     const jobs = useLoaderData();
     const { id } = useParams();
+    const intId = parseInt(id);
 
-    const job = jobs.find(job => job.id === parseInt(id));
-    const { logo, job_title, company_name, remote_or_onsite, location, job_type, salary, job_responsibility, educational_requirements, email, experiences, contact_information, job_description } = job;
+    const job = jobs.find(job => job.id === intId);
+    const { logo, job_title, company_name, remote_or_onsite, location, job_type, salary, job_responsibility, educational_requirements, experiences, contact_information, job_description } = job;
+
+
+    const handelApply =()=>{
+        setLocalstorase(intId)
+        toast('Apply completed');
+
+    }
 
     return (
 
@@ -33,23 +44,25 @@ const ShowDetail = () => {
             </div>
             <div className="shadows p-5 rounded-lg w-full md:w-[40%] lg:w-[30%]">
 
-                <p>{email}</p>
-                <p>{educational_requirements}</p>
-                <p className="py-3 flex gap-3 items-center"> <GrUserExpert></GrUserExpert>{experiences}</p>
-                <p className="py-1 flex gap-3 items-center"><FaPhone></FaPhone>{contact_information.phone}</p>
-                <p className="py-1 flex gap-3 items-center"><MdEmail></MdEmail> {contact_information.email}</p>
-                <p className="py-1 flex gap-3  items-center"> <IoLocationOutline className="text-3xl -ml-1"></IoLocationOutline>{contact_information.address}</p>
+                <p className="text-[18px] mt-5">{educational_requirements}</p>
+                <p className="py-3 flex gap-3  items-center text-[18px]"> <GrUserExpert></GrUserExpert>{experiences}</p>
+                <p className="py-1 flex gap-3 text-[18px] items-center"><FaPhone></FaPhone>{contact_information.phone}</p>
+                <p className="py-1 flex gap-3 text-[18px] items-center"><MdEmail></MdEmail> {contact_information.email}</p>
+                <p className="py-1 flex gap-3 text-[18px] items-center"> <IoLocationOutline className="text-3xl -ml-1"></IoLocationOutline>{contact_information.address}</p>
                     <div className='flex gap-2 pt-3'>
                         <FaCommentDollar className='text-xl'></FaCommentDollar>
-                        <p className='text-[16px]  flex-grow'>{salary}</p>
+                        <p className='text-[18px]  flex-grow'>{salary}</p>
                     </div>
 
                     <div className='flex gap-2 pt-3'>
                         <IoLocationOutline className='text-2xl -ml-1'></IoLocationOutline>
-                        <p className='text-[16px]  flex-grow'>{location}</p>
+                        <p className='text-[18px]  flex-grow'>{location}</p>
                     </div>
 
+                    <NavLink to={'/apply'} onClick={handelApply} className="btn w-full  btn-primary mt-5">Apply Now</NavLink>
+
                 </div>
+                <ToastContainer></ToastContainer>
             </div>
 
     );

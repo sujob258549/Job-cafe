@@ -11,6 +11,8 @@ import {
 } from "react-router-dom";
 import ShowDetail from './Component/ShowDetails/ShowDetail.jsx';
 import Fastpage from './Component/Home/Fastpage.jsx';
+import Applyjobs from './Component/ApplyJobs/Applyjobs.jsx';
+import Maindetail from './Component/Maindetail/Maindetail.jsx';
 
 const router = createBrowserRouter([
   {
@@ -34,11 +36,17 @@ const router = createBrowserRouter([
       },
       {
         path: '/detail',
-        element: <ShowDetail></ShowDetail>
+        element: <Maindetail></Maindetail>
+        
       },
       {
         path: "/show/:id",
         element: <ShowDetail></ShowDetail>,
+        loader: () => fetch('../public/jobs.json'),
+      },
+      {
+        path: "/apply",
+        element: <Applyjobs></Applyjobs>,
         loader: () => fetch('../public/jobs.json'),
       },
     ]
